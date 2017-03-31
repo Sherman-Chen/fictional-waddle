@@ -10,7 +10,8 @@ class App extends Component {
     this.state = {
       inputBase: '',
       inputTarget: '',
-      targetLangauge: 'es'
+      targetLangauge: 'es',
+      receiverNo: ''
     };
   }
 
@@ -24,6 +25,20 @@ class App extends Component {
     this.setState({
       targetLangauge: e.target.value
     });
+  }
+
+  onNumberChange = (e) => {
+    this.setState({
+      receiverNo: e.target.value
+    });
+  }
+
+  sendText = () => {
+    if (this.state.inputTarget !== '') {
+      console.log(`You sent ${this.state.receiverNo} the following message: "${this.state.inputTarget}".`);
+    } else {
+      console.log('Nothing to send!');
+    }
   }
 
   onSubmit = (e) => {
@@ -51,11 +66,14 @@ class App extends Component {
   render() {
     return (
       <section>
-        <h1>Translator</h1>
+        <header style={{borderBottom: '1px solid black'}}>
+            <h1>Translator</h1>
+            <p><em>Powered by Yandex Translate API</em></p>
+        </header>
         <section>
           <form onSubmit={this.onSubmit}>
             <h2>Base Language</h2>
-            <textarea name="input1" id="" cols="30" rows="10" value={this.state.inputBase} onChange={this.onInputBaseChange}></textarea>
+            <textarea name="input1" id="" cols="60" rows="20" value={this.state.inputBase} onChange={this.onInputBaseChange}></textarea>
             <section>            
               <h2>Target Language</h2>
               <select name="" id="" onChange={this.handleSelectLangaugeChange}>
@@ -66,10 +84,23 @@ class App extends Component {
                 <option value="tl">Tagalog - Tagalog</option>
               </select>
             </section>
-            <textarea name="input1" id="" cols="30" rows="10" value={this.state.inputTarget}></textarea>
+            <br />
+            <textarea name="input1" id="" cols="60" rows="20" value={this.state.inputTarget}></textarea>
             <br />
             <button>Translate</button>
           </form>
+          <br />
+          <form>
+            <label>Number to Text (X-XXX-XXX-XXXX)</label>
+            <input type="text" onChange={this.onNumberChange}/>
+          </form>
+          <section style={{height: '30px'}}>
+            <button onClick={this.sendText} style={{float: 'left'}}>Send Text to</button>
+            <p>{this.state.receiverNo}</p>
+          </section>
+          <footer style={{borderTop: '1px solid black'}}>
+            <p><em>Made with fruit by Shermango</em></p>
+          </footer>
         </section>
       </section>
     );
