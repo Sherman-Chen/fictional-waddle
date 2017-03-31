@@ -1,3 +1,11 @@
+## Summary
+
+The idea behind this application is that it will act as a tool for Educators to communicate with student's families who do not natively speak English. Educators type a message in English, select the target langauge to translate, then afterwards can review their message or click submit to send an SMS to the target with the translate message.
+
+This is a rapid MVP that at the moment just translates the message for sending, it still requires some method to send SMS (Maybe Twilio, AWS SNS, or some other alternative). Also there should be a secondary interface for the receiver to then send back a message in their natively langauge and translate it back to English for the Educator to read.
+
+This should all be done in a server instead of just directly through the web client, so that we can establish a database to keep some records history, user authentication, page routing, etc.
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
